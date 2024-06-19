@@ -1,4 +1,4 @@
-from analyze import df
+from analyze import df, df_score
 import streamlit as st
 
 center_css = """
@@ -16,9 +16,21 @@ center_css = """
 """
 
 st.markdown(center_css, unsafe_allow_html=True)
-st.title('reddit+mood :rainbow:')
-st.dataframe(df)
-st.markdown('</div>', unsafe_allow_html=True)
-
-
-
+st.title("reddit+mood :rainbow:")
+st.dataframe(
+    df_score,
+    column_order=("subreddit", "mood"),
+    width=None,
+    column_config={
+        "subreddit": st.column_config.TextColumn(
+            "subreddit",
+        ),
+        "mood": st.column_config.ProgressColumn(
+            "mood",
+            format="%.2f",
+            min_value=-1,
+            max_value=1,
+        ),
+    },
+)
+st.markdown("</div>", unsafe_allow_html=True)
