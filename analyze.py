@@ -30,7 +30,6 @@ for subreddit_name in subreddit_names:
     cnt = 0
     total_sum=0
     for comment in get_comments(subreddit_name):
-        # Process comment text (e.g., remove irrelevant characters)
         if cnt == 3:
             avg=total_sum/cnt
             rating_score.append([f'r/{subreddit_name}', avg])
@@ -64,10 +63,6 @@ for subreddit_name in subreddit_names:
         total_sum+=sentiment_score
 
 
-        # Update mood statistics based on sentiment score (positive, negative, neutral)
-        # ... your logic to track mood ...
-
-        # Optionally, print results for debugging/monitoring
         print(f" subrredit_name:{subreddit_name} Sentiment: {sentiment_score}")
 df = pd.DataFrame(rating, columns=["subreddit", "mood"])
 df_score=pd.DataFrame(rating_score, columns=['subreddit','mood'])
